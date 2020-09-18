@@ -8,5 +8,15 @@ namespace Telekat
 {
     class Physics
     {
+        // Attributes
+
+
+        // Properties
+
+
+        // Methods
+        // Collision Detection
+
+        // Gravity
     }
 }
