@@ -22,21 +22,29 @@ namespace Telekat
         public bool TopCollision()
         {
             topCollided = false;
+
+            //need a player rectangle
         }
 
         public bool RightCollision()
         {
             rightCollided = false;
+
+            //need a player rectangle
         }
 
         public bool LeftCollision()
         {
             leftCollided = false;
+
+            //need player rectangle
         }
 
         public bool BottomCollision()
         {
             bottomCollided = false;
+
+            //need player rectangle
         }
 
         // Gravity

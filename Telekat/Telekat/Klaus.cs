@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace Telekat
 {
-    class Klaus
+    class Klaus : Physics
     {
+        #region Fields
+        // Sprites
+        Texture2D klausSprite;
+
+        //Character Fields
+        private int lives = 9;
+
+        // Fields for Physics
+        private Rectangle characterBox;
+
+
+        // State
+
+        #endregion
+
+
+
+
+
     }
 }
