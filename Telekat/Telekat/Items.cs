@@ -26,6 +26,23 @@ namespace Telekat
 
 
         #region Properties
+        // Read only property of the item's hitbox.
+        public Rectangle ItemBox
+        {
+            get{ return this.itemBox; }
+        }
+        // Read and sets the x value of the item's hitbox.
+        public int ItemX
+        {
+            get{ return this.itemBox.X; }
+            set{ this.itemBox.X = value; }
+        }
+        // Read and sets the y value of the item's hitbox.
+        public int ItemY
+        {
+            get{ return this.itemBox.Y; }
+            set{ this.itemBox.Y = value; }
+        }
 
         #endregion
 

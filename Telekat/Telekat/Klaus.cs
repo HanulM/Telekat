@@ -28,17 +28,18 @@ namespace Telekat
 
 
         #region Properties
+        // Read only property of the character's hitbox
         public Rectangle CharacterBox
         {
             get{ return this.characterBox; }
         }
-
+        // Read and sets the x value of the character's hitbox.
         public int CharacterX
         {
             get{ return this.characterBox.X; }
             set{ this.characterBox.X = value; }
         }
-
+        // Read and sets the y value of the character's hitbox.
         public int CharacterY
         {
             get{ return this.characterBox.Y; }
@@ -49,6 +50,7 @@ namespace Telekat
 
 
         #region Constructor
+        // Creates a Klaus object using parameters for an asset and a hitbox.
         public Klaus(Texture2D asset, Rectangle playerBox)
         {
             klausSprite = asset;
