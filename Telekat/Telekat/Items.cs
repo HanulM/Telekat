@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Microsoft.Xna.Framework;
+using System.Microsoft.Xna.Framework.Graphics;
 
 namespace Telekat
 {
@@ -10,12 +12,16 @@ namespace Telekat
     {
         #region Fields
         // Sprites
+        Texture2D item;
 
         // Item fields
 
         // Fields for Physics
+        protected Rectangle itemBox;
 
-        // State
+        // Active or Nonactive
+        protected bool isActive;
+
         #endregion
 
 
