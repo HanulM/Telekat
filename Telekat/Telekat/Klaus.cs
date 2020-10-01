@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Microsoft.Xna.Framework;
+using System.Microsoft.Xna.Framework.Graphics;
+using System.Microsoft.Xna.Framework.Input;
 
 namespace Telekat
 {
@@ -16,7 +19,7 @@ namespace Telekat
         private int lives = 9;
 
         // Fields for Physics
-        private Rectangle characterBox;
+        protected Rectangle characterBox;
 
 
         // State
@@ -24,8 +27,18 @@ namespace Telekat
         #endregion
 
 
+        #region Properties
+
+        #endregion
 
 
+        #region Constructor
 
+        #endregion
+
+
+        #region Methods
+
+        #endregion
     }
 }

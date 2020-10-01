@@ -4,6 +4,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Telekat
 {
+    enum GameState
+    {
+        Menu,
+        Game,
+        GameOver,
+        GameWin,
+        PauseMenu
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>

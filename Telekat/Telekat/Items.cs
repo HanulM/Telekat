@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Telekat
 {
-    class Items
+    abstract class Items : Physics
     {
+        #region Fields
+        // Sprites
+
+        // Item fields
+
+        // Fields for Physics
+
+        // State
+        #endregion
+
+
+        #region Properties
+
+        #endregion
+
+
+        #region Class Constructor
+
+        #endregion
+
+
+        #region Methods
+
+        #endregion
     }
 }
