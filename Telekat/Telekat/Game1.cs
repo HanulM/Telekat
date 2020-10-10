@@ -20,6 +20,7 @@ namespace Telekat
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GameState gameState;
 
         public Game1()
         {
@@ -37,7 +38,7 @@ namespace Telekat
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            gameState = GameState.Menu;
             base.Initialize();
         }
 
@@ -73,6 +74,21 @@ namespace Telekat
                 Exit();
 
             // TODO: Add your update logic here
+
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    break;
+                case GameState.Game:
+                    break;
+                case GameState.GameOver:
+                    break;
+                case GameState.PauseMenu:
+                    break;
+                case GameState.GameWin:
+                    break;
+
+            }
 
             base.Update(gameTime);
         }
