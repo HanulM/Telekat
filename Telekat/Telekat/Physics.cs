@@ -19,33 +19,33 @@ namespace Telekat
 
         // Methods
         // Collision Detection
-        public bool TopCollision()
-        {
-            topCollided = false;
+        //public bool TopCollision()
+        //{
+        //    topCollided = false;
 
-            //need a player rectangle
-        }
+        //    //need a player rectangle
+        //}
 
-        public bool RightCollision()
-        {
-            rightCollided = false;
+        //public bool RightCollision()
+        //{
+        //    rightCollided = false;
 
-            //need a player rectangle
-        }
+        //    //need a player rectangle
+        //}
 
-        public bool LeftCollision()
-        {
-            leftCollided = false;
+        //public bool LeftCollision()
+        //{
+        //    leftCollided = false;
 
-            //need player rectangle
-        }
+        //    //need player rectangle
+        //}
 
-        public bool BottomCollision()
-        {
-            bottomCollided = false;
+        //public bool BottomCollision()
+        //{
+        //    bottomCollided = false;
 
-            //need player rectangle
-        }
+        //    //need player rectangle
+        //}
 
         // Gravity
     }

@@ -21,6 +21,9 @@ namespace Telekat
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameState gameState;
+        KeyboardState keyboardState;
+        KeyboardState prevKeyboardState;
+        double timer;
 
         public Game1()
         {
@@ -39,6 +42,8 @@ namespace Telekat
         {
             // TODO: Add your initialization logic here
             gameState = GameState.Menu;
+            keyboardState = Keyboard.GetState();
+            timer = 10;
             base.Initialize();
         }
 
@@ -74,18 +79,97 @@ namespace Telekat
                 Exit();
 
             // TODO: Add your update logic here
-
+            
+            //Change the game states 
             switch (gameState)
             {
+                //user will be in the Menu of the game
                 case GameState.Menu:
+
+                    //Once the user presses "Enter" 
+                    //it will change the game state 
+                    //and it will start the game.
+                    if (SingleKeyPress(Keys.Enter))
+                    {
+                        gameState = GameState.Game;
+                    }
+
+                    //Resets the placeholder for loosing mechanic
+                    timer = 10;
+
+
                     break;
+
+                //User will be in the Game 
                 case GameState.Game:
+
+                    //Place holder for the player losing mechanism. 
+                    timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
+
+                    //Checks if the player pauses the game
+                    //and changes the game state to pause
+                    if (SingleKeyPress(Keys.P))
+                    {
+                        gameState = GameState.PauseMenu;
+                    }
+
+                    //Checks if the player lost the game/
+                    //the timer hit 0 mark(placeholder for loosing) 
+                    else if(timer <= 0)
+                    {
+                        gameState = GameState.GameOver;
+                    }
+                    //NOT WORKING (Have to work on it)
+                    //else if (SingleKeyPress(Keys.W))
+                    //{
+                    //    gameState = GameState.GameWin;
+                    //}
+
                     break;
+
+                //User will be in Game over 
                 case GameState.GameOver:
+
+                    //If the user presses the enter key
+                    //it will take the player back to the menu 
+                    if (SingleKeyPress(Keys.Enter))
+                    {
+                        gameState = GameState.Menu;
+                    }
+
                     break;
+
+                //User is in the Pause menu
                 case GameState.PauseMenu:
+
+                    //If the user presses P again,
+                    //it will take them back to the 
+                    //Game.
+                    if (SingleKeyPress(Keys.P))
+                    {
+                        gameState = GameState.Game;
+                    }
+
+                    //Placeholder to let the player reset the game
+                    //NOT WORKING (Have to work on it)
+                    //else if (SingleKeyPress(Keys.M))
+                    //{
+                    //    gameState = GameState.Menu;
+                    //}
+
                     break;
+
+                //User is in win menu
                 case GameState.GameWin:
+
+                    //if the user presses enter 
+                    //it will take them back to the
+                    //main menu of the game
+                    if (SingleKeyPress(Keys.Enter))
+                    {
+                        gameState = GameState.Menu;
+                    }
+
                     break;
 
             }
@@ -99,11 +183,64 @@ namespace Telekat
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
+            //Placeholders for the changes between
+            //the game state.
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    GraphicsDevice.Clear(Color.Coral);
+                    break;
+
+                case GameState.Game:
+                    GraphicsDevice.Clear(Color.Yellow);
+
+                    break;
+
+                case GameState.GameOver:
+                    GraphicsDevice.Clear(Color.Red);
+
+                    break;
+
+                case GameState.PauseMenu:
+                    GraphicsDevice.Clear(Color.Blue);
+
+                    break;
+
+                case GameState.GameWin:
+                    GraphicsDevice.Clear(Color.Green);
+
+                    break;
+
+            }
+
+            spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        //Checks if the key being asked for 
+        //was pressed only once. 
+        public bool SingleKeyPress(Keys key)
+        {
+            //save the state of the previous keyboard state
+            prevKeyboardState = keyboardState;
+
+            //Get the state of the keyboard
+            keyboardState = Keyboard.GetState();
+
+            //Checks if the the prev keyboard state 
+            //of a certain key was up.
+            if (keyboardState.IsKeyDown(key) && prevKeyboardState.IsKeyUp(key))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
