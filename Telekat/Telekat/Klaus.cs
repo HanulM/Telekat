@@ -20,6 +20,7 @@ namespace Telekat
 
         // Fields for Physics
         protected Rectangle characterBox;
+        private KeyboardState kbState;
 
 
         // State
@@ -61,6 +62,28 @@ namespace Telekat
 
 
         #region Methods
+        //Lets Klaus move around the screen
+        public void KlausMove()
+        {
+            //Placeholder for klaus moving around the screen.
+            kbState = Keyboard.GetState();
+            if (kbState.IsKeyDown(Keys.W))
+            {
+                characterBox.Y--;
+            }
+            else if (kbState.IsKeyDown(Keys.S))
+            {
+                characterBox.Y++;
+            }
+            else if (kbState.IsKeyDown(Keys.A))
+            {
+                characterBox.X--;
+            }
+            else if (kbState.IsKeyDown(Keys.D))
+            {
+                characterBox.X++;
+            }
+        }
 
         #endregion
     }
