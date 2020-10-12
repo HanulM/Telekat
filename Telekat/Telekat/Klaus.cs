@@ -11,16 +11,22 @@ namespace Telekat
 {
     class Klaus : Physics
     {
+        enum KlausState
+        {
+            FaceLeft,
+            FaceRigth,
+        }
+
         #region Fields
         // Sprites
         private Texture2D klausSprite;
         private int framesElapsed;
         private double timePerFrame = 100;
         private SpriteBatch spriteBatch;
-        private int klausX;
-        private int klausY;
-        private int klausWidth;
-        private int klausHeight;
+        private KlausState klausState;
+        private int numFrames;
+        private int frames;
+        private Vector2 klausLoc;
 
         //Character Fields
         private int lives = 9;
@@ -64,6 +70,8 @@ namespace Telekat
             klausSprite = asset;
             playerBox = characterBox;
             this.spriteBatch = spriteBatch;
+            klausLoc = new Vector2(10,10);
+            numFrames = 8;
         }
 
         #endregion
@@ -77,27 +85,59 @@ namespace Telekat
 
             //Placeholder for klaus moving around the screen.
             kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.W))
+            
+            if (kbState.IsKeyDown(Keys.A))
             {
-                characterBox.Y--;
-            }
-            else if (kbState.IsKeyDown(Keys.S))
-            {
-                characterBox.Y++;
-            }
-            else if (kbState.IsKeyDown(Keys.A))
-            {
-                characterBox.X--;
+                klausState = KlausState.FaceLeft;
             }
             else if (kbState.IsKeyDown(Keys.D))
             {
-                characterBox.X++;
+                klausState = KlausState.FaceRigth;
+            }
+
+            switch (klausState)
+            {
+                case KlausState.FaceLeft:
+                    if (kbState.IsKeyDown(Keys.A))
+                    {
+                        frames = framesElapsed % numFrames + 1;
+                        characterBox.X--;
+                    }
+                    else
+                    {
+                        frames = 0;
+                    }
+
+                    break;
+
+                case KlausState.FaceRigth:
+                    if (kbState.IsKeyDown(Keys.D))
+                    {
+                        frames = framesElapsed % numFrames + 1;
+                        characterBox.X++;
+                    }
+                    else
+                    {
+                        frames = 0;
+                    }
+
+                    break;
             }
         }
 
         public void KlausDraw()
         {
-            spriteBatch.Draw(klausSprite, characterBox, Color.White);
+            if (klausState == KlausState.FaceLeft || klausState == KlausState.FaceRigth)
+            {
+                spriteBatch.Draw(klausSprite, klausLoc,
+                    new Rectangle(characterBox.X + frames * characterBox.Width,
+                    characterBox.Y, characterBox.Width, characterBox.Height ), Color.White, 
+                    0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+            }
+            else
+            {
+                spriteBatch.Draw(klausSprite, characterBox, Color.White);
+            }
         }
 
         #endregion
