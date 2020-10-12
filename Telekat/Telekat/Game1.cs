@@ -23,7 +23,10 @@ namespace Telekat
         GameState gameState;
         KeyboardState keyboardState;
         KeyboardState prevKeyboardState;
+        Texture2D titleScreen;
         double timer;
+        int width;
+        int height;
 
         public Game1()
         {
@@ -44,6 +47,9 @@ namespace Telekat
             gameState = GameState.Menu;
             keyboardState = Keyboard.GetState();
             timer = 10;
+            width = GraphicsDevice.Viewport.Width;
+            height = GraphicsDevice.Viewport.Height;
+
             base.Initialize();
         }
 
@@ -55,7 +61,7 @@ namespace Telekat
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            titleScreen = Content.Load<Texture2D>("title-screen");
             // TODO: use this.Content to load your game content here
         }
 
@@ -120,10 +126,10 @@ namespace Telekat
                         gameState = GameState.GameOver;
                     }
                     //NOT WORKING (Have to work on it)
-                    //else if (SingleKeyPress(Keys.W))
-                    //{
-                    //    gameState = GameState.GameWin;
-                    //}
+                    else if (SingleKeyPress(Keys.W))
+                    {
+                        gameState = GameState.GameWin;
+                    }
 
                     break;
 
@@ -192,7 +198,7 @@ namespace Telekat
             switch (gameState)
             {
                 case GameState.Menu:
-                    GraphicsDevice.Clear(Color.Coral);
+                    spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
                     break;
 
                 case GameState.Game:

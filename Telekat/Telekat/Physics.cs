@@ -19,34 +19,38 @@ namespace Telekat
 
         // Methods
         // Collision Detection
-        //public bool TopCollision()
-        //{
-        //    topCollided = false;
+        public bool TopCollision()
+        {
+            topCollided = false;
+            return topCollided;
+         //need a player rectangle
+        }
 
-        //    //need a player rectangle
-        //}
+        public bool RightCollision()
+        {
+            rightCollided = false;
+            return rightCollided;
+            //need a player rectangle
+        }
 
-        //public bool RightCollision()
-        //{
-        //    rightCollided = false;
+        public bool LeftCollision()
+        {
+            leftCollided = false;
+            return leftCollided;
+            //need player rectangle
+        }
 
-        //    //need a player rectangle
-        //}
-
-        //public bool LeftCollision()
-        //{
-        //    leftCollided = false;
-
-        //    //need player rectangle
-        //}
-
-        //public bool BottomCollision()
-        //{
-        //    bottomCollided = false;
-
-        //    //need player rectangle
-        //}
+        public bool BottomCollision()
+        {
+            bottomCollided = false;
+            return bottomCollided;
+            //need player rectangle
+        }
 
         // Gravity
+        public void Gravity(Klaus player)
+        {
+
+        }
     }
 }

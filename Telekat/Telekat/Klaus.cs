@@ -13,7 +13,14 @@ namespace Telekat
     {
         #region Fields
         // Sprites
-        Texture2D klausSprite;
+        private Texture2D klausSprite;
+        private int framesElapsed;
+        private double timePerFrame = 100;
+        private SpriteBatch spriteBatch;
+        private int klausX;
+        private int klausY;
+        private int klausWidth;
+        private int klausHeight;
 
         //Character Fields
         private int lives = 9;
@@ -52,10 +59,11 @@ namespace Telekat
 
         #region Constructor
         // Creates a Klaus object using parameters for an asset and a hitbox.
-        public Klaus(Texture2D asset, Rectangle playerBox)
+        public Klaus(Texture2D asset, Rectangle playerBox, SpriteBatch spriteBatch)
         {
             klausSprite = asset;
             playerBox = characterBox;
+            this.spriteBatch = spriteBatch;
         }
 
         #endregion
@@ -63,8 +71,10 @@ namespace Telekat
 
         #region Methods
         //Lets Klaus move around the screen
-        public void KlausMove()
+        public void KlausMove(GameTime gameTime)
         {
+            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+
             //Placeholder for klaus moving around the screen.
             kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.W))
@@ -83,6 +93,11 @@ namespace Telekat
             {
                 characterBox.X++;
             }
+        }
+
+        public void KlausDraw()
+        {
+            spriteBatch.Draw(klausSprite, characterBox, Color.White);
         }
 
         #endregion
