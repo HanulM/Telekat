@@ -9,15 +9,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Telekat
 {
+    enum KlausState
+    {
+        FaceLeft,
+        FaceRight,
+        WalkLeft,
+        WalkRight
+    }
     class Klaus : Physics
     {
-        enum KlausState
-        {
-            FaceLeft,
-            FaceRight,
-            WalkLeft,
-            WalkRight
-        }
 
         #region Fields
         // Sprites
@@ -124,7 +124,7 @@ namespace Telekat
 
                     if(kbState.IsKeyUp(Keys.A))
                     {
-                        klausState = Klaus.FaceLeft;
+                        klausState = KlausState.FaceLeft;
                     }
 
                     break;
@@ -133,7 +133,7 @@ namespace Telekat
 
                     if(kbState.IsKeyUp(Keys.D))
                     {
-                        klausState = Klaus.FaceRight;
+                        klausState = KlausState.FaceRight;
                     }
 
                     break;

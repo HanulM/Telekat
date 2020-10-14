@@ -97,7 +97,7 @@ namespace Telekat
                     //and it will start the game.
                     if (SingleKeyPress(Keys.Enter))
                     {
-                        gameState = GameState.Game;
+                        gameState = GameState.Game; 
                     }
 
                     //Resets the placeholder for loosing mechanic
@@ -110,26 +110,25 @@ namespace Telekat
                 case GameState.Game:
 
                     //Place holder for the player losing mechanism. 
-                    timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
+                    //timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
 
-                    //Checks if the player pauses the game
-                    //and changes the game state to pause
-                    if (SingleKeyPress(Keys.P))
-                    {
-                        gameState = GameState.PauseMenu;
-                    }
-
-                    //Checks if the player lost the game/
-                    //the timer hit 0 mark(placeholder for loosing) 
-                    else if(timer <= 0)
-                    {
-                        gameState = GameState.GameOver;
-                    }
-                    //NOT WORKING (Have to work on it)
-                    else if (SingleKeyPress(Keys.W))
+                    /*if(SingleKeyPress(Keys.W))
                     {
                         gameState = GameState.GameWin;
                     }
+
+                    if(SingleKeyPress(Keys.L))
+                    {
+                        gameState = GameState.GameOver;
+                    }
+
+                    if(SingleKeyPress(Keys.P))
+                    {
+                        gameState = GameState.PauseMenu;
+                    }*/
+
+                    // Something is fundamentally wonky with this part of the FSM
+                    // Could be discussed in person
 
                     break;
 
@@ -155,13 +154,6 @@ namespace Telekat
                     {
                         gameState = GameState.Game;
                     }
-
-                    //Placeholder to let the player reset the game
-                    //NOT WORKING (Have to work on it)
-                    //else if (SingleKeyPress(Keys.M))
-                    //{
-                    //    gameState = GameState.Menu;
-                    //}
 
                     break;
 
@@ -198,12 +190,12 @@ namespace Telekat
             switch (gameState)
             {
                 case GameState.Menu:
-                    spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
+                    //spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
+                    GraphicsDevice.Clear(Color.Purple);
                     break;
 
                 case GameState.Game:
                     GraphicsDevice.Clear(Color.Yellow);
-
                     break;
 
                 case GameState.GameOver:
