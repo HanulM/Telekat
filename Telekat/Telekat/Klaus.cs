@@ -14,7 +14,9 @@ namespace Telekat
         enum KlausState
         {
             FaceLeft,
-            FaceRigth,
+            FaceRight,
+            WalkLeft,
+            WalkRight
         }
 
         #region Fields
@@ -86,39 +88,52 @@ namespace Telekat
             //Placeholder for klaus moving around the screen.
             kbState = Keyboard.GetState();
             
-            if (kbState.IsKeyDown(Keys.A))
-            {
-                klausState = KlausState.FaceLeft;
-            }
-            else if (kbState.IsKeyDown(Keys.D))
-            {
-                klausState = KlausState.FaceRigth;
-            }
-
             switch (klausState)
             {
                 case KlausState.FaceLeft:
-                    if (kbState.IsKeyDown(Keys.A))
+
+                    if(kbState.IsKeyDown(Keys.A))
                     {
-                        frames = framesElapsed % numFrames + 1;
-                        characterBox.X--;
-                    }
-                    else
+                        klausState = KlausState.WalkLeft;
+                        klausLoc.X--;
+                    }   
+
+                    if(kbState.IsKeyDown(Keys.D))
                     {
-                        frames = 0;
+                        klausState = KlausState.FaceRight;
                     }
 
                     break;
 
-                case KlausState.FaceRigth:
-                    if (kbState.IsKeyDown(Keys.D))
+                case KlausState.FaceRight:
+
+                    if(kbState.IsKeyDown(Keys.A))
                     {
-                        frames = framesElapsed % numFrames + 1;
-                        characterBox.X++;
+                        klausState = KlausState.FaceLeft;
                     }
-                    else
+
+                    if(kbState.IsKeyDown(Keys.D))
                     {
-                        frames = 0;
+                        klausState = KlausState.WalkRight;
+                        klausLoc.X++;
+                    }
+
+                    break;
+
+                case KlausState.WalkLeft:
+
+                    if(kbState.IsKeyUp(Keys.A))
+                    {
+                        klausState = Klaus.FaceLeft;
+                    }
+
+                    break;
+
+                case KlausState.WalkRight:
+
+                    if(kbState.IsKeyUp(Keys.D))
+                    {
+                        klausState = Klaus.FaceRight;
                     }
 
                     break;
@@ -127,7 +142,7 @@ namespace Telekat
 
         public void KlausDraw()
         {
-            if (klausState == KlausState.FaceLeft || klausState == KlausState.FaceRigth)
+            if (klausState == KlausState.FaceLeft || klausState == KlausState.FaceRight)
             {
                 spriteBatch.Draw(klausSprite, klausLoc,
                     new Rectangle(characterBox.X + frames * characterBox.Width,
