@@ -36,6 +36,7 @@ namespace Telekat
         // Fields for Physics
         protected Rectangle characterBox;
         private KeyboardState kbState;
+        private MouseState mouseState;
 
 
         // State
@@ -80,6 +81,20 @@ namespace Telekat
 
 
         #region Methods
+
+        // Triggers Klaus' telekinesis
+        public bool Tele()
+        {
+            mouseState = Mouse.GetState();
+
+            if(mouseState.LeftButton)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         //Lets Klaus move around the screen
         public void KlausMove(GameTime gameTime)
         {
