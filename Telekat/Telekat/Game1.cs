@@ -24,6 +24,9 @@ namespace Telekat
         KeyboardState keyboardState;
         KeyboardState prevKeyboardState;
         Texture2D titleScreen;
+        Klaus klaus;
+        Texture2D klausSprite;
+        Rectangle playerBox;
         double timer;
         int width;
         int height;
@@ -47,9 +50,10 @@ namespace Telekat
             gameState = GameState.Menu;
             keyboardState = Keyboard.GetState();
             timer = 10;
+            playerBox = new Rectangle(100, 100, 50, 50); 
             width = GraphicsDevice.Viewport.Width;
             height = GraphicsDevice.Viewport.Height;
-
+            klaus = new Klaus(klausSprite, playerBox, spriteBatch);
             base.Initialize();
         }
 
@@ -62,6 +66,8 @@ namespace Telekat
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             titleScreen = Content.Load<Texture2D>("title-screen");
+            klausSprite = Content.Load<Texture2D>("klause_sprite");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -110,22 +116,21 @@ namespace Telekat
                 case GameState.Game:
 
                     //Place holder for the player losing mechanism. 
-                    //timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
 
-                    /*if(SingleKeyPress(Keys.W))
+                    if (SingleKeyPress(Keys.P))
+                    {
+                        gameState = GameState.PauseMenu;
+                    }
+
+                    if (keyboardState.IsKeyDown(Keys.W))
                     {
                         gameState = GameState.GameWin;
                     }
 
-                    if(SingleKeyPress(Keys.L))
+                    if (keyboardState.IsKeyDown(Keys.L))
                     {
                         gameState = GameState.GameOver;
                     }
-
-                    if(SingleKeyPress(Keys.P))
-                    {
-                        gameState = GameState.PauseMenu;
-                    }*/
 
                     // Something is fundamentally wonky with this part of the FSM
                     // Could be discussed in person
@@ -153,6 +158,11 @@ namespace Telekat
                     if (SingleKeyPress(Keys.P))
                     {
                         gameState = GameState.Game;
+                    }
+
+                    if (keyboardState.IsKeyDown(Keys.R))
+                    {
+                        gameState = GameState.Menu;
                     }
 
                     break;
