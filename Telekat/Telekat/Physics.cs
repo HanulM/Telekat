@@ -9,42 +9,24 @@ namespace Telekat
     class Physics
     {
         // Attributes
-        private bool topCollided;
-        private bool rightCollided;
-        private bool leftCollided;
-        private bool bottomCollided;
+        //Klaus klaus = new Klaus();
+        //Items myItems = new Items();
 
         // Properties
 
 
         // Methods
         // Collision Detection
-        public bool TopCollision()
+        public bool Collided()
         {
-            topCollided = false;
-            return topCollided;
-         //need a player rectangle
-        }
+            /*
+             * if(klaus.characterBox.Contains(myItems.itemBox)
+             * {
+             *      return true;
+             * }
+             */
 
-        public bool RightCollision()
-        {
-            rightCollided = false;
-            return rightCollided;
-            //need a player rectangle
-        }
-
-        public bool LeftCollision()
-        {
-            leftCollided = false;
-            return leftCollided;
-            //need player rectangle
-        }
-
-        public bool BottomCollision()
-        {
-            bottomCollided = false;
-            return bottomCollided;
-            //need player rectangle
+            return false; //else
         }
 
         // Gravity
