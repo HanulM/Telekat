@@ -54,6 +54,7 @@ namespace Telekat
             width = GraphicsDevice.Viewport.Width;
             height = GraphicsDevice.Viewport.Height;
             klaus = new Klaus(klausSprite, playerBox, spriteBatch);
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -200,8 +201,8 @@ namespace Telekat
             switch (gameState)
             {
                 case GameState.Menu:
-                    //spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
-                    GraphicsDevice.Clear(Color.Purple);
+                    spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
+                    //GraphicsDevice.Clear(Color.Purple);
                     break;
 
                 case GameState.Game:

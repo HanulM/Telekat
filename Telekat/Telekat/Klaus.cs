@@ -87,10 +87,10 @@ namespace Telekat
         {
             mouseState = Mouse.GetState();
 
-            if(mouseState.LeftButton)
+            /*if(mouseState.LeftButton)
             {
                 return true;
-            }
+            }*/
 
             return false;
         }
