@@ -22,45 +22,44 @@ namespace Telekat
         #region Fields
         // Sprites
         private Texture2D klausSprite;
+        private SpriteBatch spriteBatch;
+        private Rectangle klausBox;
         private int framesElapsed;
         private double timePerFrame = 100;
-        private SpriteBatch spriteBatch;
-        private KlausState klausState;
         private int numFrames;
         private int frames;
-        private Vector2 klausLoc;
 
         //Character Fields
         private int lives = 9;
 
-        // Fields for Physics
-        protected Rectangle characterBox;
+        // Inputs
         private KeyboardState kbState;
         private MouseState mouseState;
 
 
         // State
+        private KlausState klausState;
 
         #endregion
 
 
         #region Properties
         // Read only property of the character's hitbox
-        public Rectangle CharacterBox
+        public Rectangle KlausBox
         {
-            get{ return this.characterBox; }
+            get{ return this.klausBox; }
         }
         // Read and sets the x value of the character's hitbox.
-        public int CharacterX
+        public int KlausX
         {
-            get{ return this.characterBox.X; }
-            set{ this.characterBox.X = value; }
+            get{ return this.klausBox.X; }
+            set{ this.klausBox.X = value; }
         }
         // Read and sets the y value of the character's hitbox.
-        public int CharacterY
+        public int KlausY
         {
-            get{ return this.characterBox.Y; }
-            set{ this.characterBox.Y = value; }
+            get{ return this.klausBox.Y; }
+            set{ this.klausBox.Y = value; }
         }
 
         #endregion
@@ -71,9 +70,8 @@ namespace Telekat
         public Klaus(Texture2D asset, Rectangle playerBox, SpriteBatch spriteBatch)
         {
             klausSprite = asset;
-            playerBox = characterBox;
+            this.klausBox = playerBox;
             this.spriteBatch = spriteBatch;
-            klausLoc = new Vector2(10,10);
             numFrames = 8;
         }
 
@@ -110,7 +108,7 @@ namespace Telekat
                     if(kbState.IsKeyDown(Keys.A))
                     {
                         klausState = KlausState.WalkLeft;
-                        klausLoc.X--;
+                        klausBox.X--;
                     }   
 
                     if(kbState.IsKeyDown(Keys.D))
@@ -130,7 +128,7 @@ namespace Telekat
                     if(kbState.IsKeyDown(Keys.D))
                     {
                         klausState = KlausState.WalkRight;
-                        klausLoc.X++;
+                        klausBox.X++;
                     }
 
                     break;
@@ -152,6 +150,8 @@ namespace Telekat
                     }
 
                     break;
+
+                    // gotta implement code where he jumps - uses gravity
             }
         }
 

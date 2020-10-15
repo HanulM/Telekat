@@ -20,13 +20,20 @@ namespace Telekat
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         GameState gameState;
+
         KeyboardState keyboardState;
         KeyboardState prevKeyboardState;
+
         Texture2D titleScreen;
-        Klaus klaus;
         Texture2D klausSprite;
-        Rectangle playerBox;
+
+        Rectangle playerBox = new Rectangle(0, 739, 80, 75);
+
+        Klaus klaus;
+        // make item objects
+
         double timer;
         int width;
         int height;
@@ -49,12 +56,17 @@ namespace Telekat
             // TODO: Add your initialization logic here
             gameState = GameState.Menu;
             keyboardState = Keyboard.GetState();
+
             timer = 10;
-            playerBox = new Rectangle(100, 100, 50, 50); 
+
             width = GraphicsDevice.Viewport.Width;
             height = GraphicsDevice.Viewport.Height;
+
+
             klaus = new Klaus(klausSprite, playerBox, spriteBatch);
+
             this.IsMouseVisible = true;
+
             base.Initialize();
         }
 
@@ -116,7 +128,7 @@ namespace Telekat
                 //User will be in the Game 
                 case GameState.Game:
 
-                    //Place holder for the player losing mechanism. 
+                    //klaus.KlausMove();
 
                     if (SingleKeyPress(Keys.P))
                     {
@@ -132,9 +144,6 @@ namespace Telekat
                     {
                         gameState = GameState.GameOver;
                     }
-
-                    // Something is fundamentally wonky with this part of the FSM
-                    // Could be discussed in person
 
                     break;
 
@@ -207,6 +216,7 @@ namespace Telekat
 
                 case GameState.Game:
                     GraphicsDevice.Clear(Color.Yellow);
+                    //klaus.KlausDraw();
                     break;
 
                 case GameState.GameOver:
