@@ -24,6 +24,7 @@ namespace Telekat
         private Texture2D klausSprite;
         private SpriteBatch spriteBatch;
         private Rectangle klausBox;
+        private Vector2 klausLoc;
         private int framesElapsed;
         private double timePerFrame = 100;
         private int numFrames;
@@ -67,11 +68,12 @@ namespace Telekat
 
         #region Constructor
         // Creates a Klaus object using parameters for an asset and a hitbox.
-        public Klaus(Texture2D asset, Rectangle playerBox, SpriteBatch spriteBatch)
+        public Klaus(Texture2D asset, Rectangle playerBox, SpriteBatch spriteBatch, Vector2 klausLoc)
         {
             klausSprite = asset;
             this.klausBox = playerBox;
             this.spriteBatch = spriteBatch;
+            this.klausLoc = klausLoc;
             numFrames = 8;
         }
 
@@ -160,13 +162,13 @@ namespace Telekat
             if (klausState == KlausState.FaceLeft || klausState == KlausState.FaceRight)
             {
                 spriteBatch.Draw(klausSprite, klausLoc,
-                    new Rectangle(characterBox.X + frames * characterBox.Width,
-                    characterBox.Y, characterBox.Width, characterBox.Height ), Color.White, 
+                    new Rectangle(klausBox.X + frames * klausBox.Width,
+                    klausBox.Y, klausBox.Width, klausBox.Height ), Color.White, 
                     0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
             }
             else
             {
-                spriteBatch.Draw(klausSprite, characterBox, Color.White);
+                spriteBatch.Draw(klausSprite, klausBox, Color.White);
             }
         }
 

@@ -29,7 +29,7 @@ namespace Telekat
         Texture2D titleScreen;
         Texture2D klausSprite;
 
-        Rectangle playerBox = new Rectangle(0, 739, 80, 75);
+        Rectangle playerBox = new Rectangle(0, 100, 100, 100);
 
         Klaus klaus;
         // make item objects
@@ -63,7 +63,6 @@ namespace Telekat
             height = GraphicsDevice.Viewport.Height;
 
 
-            klaus = new Klaus(klausSprite, playerBox, spriteBatch);
 
             this.IsMouseVisible = true;
 
@@ -81,6 +80,8 @@ namespace Telekat
             titleScreen = Content.Load<Texture2D>("title-screen");
             klausSprite = Content.Load<Texture2D>("klause_sprite");
 
+
+            klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(100f, 100f));
             // TODO: use this.Content to load your game content here
         }
 
@@ -128,7 +129,7 @@ namespace Telekat
                 //User will be in the Game 
                 case GameState.Game:
 
-                    //klaus.KlausMove();
+                    klaus.KlausMove(gameTime);
 
                     if (SingleKeyPress(Keys.P))
                     {
@@ -211,11 +212,15 @@ namespace Telekat
             {
                 case GameState.Menu:
                     spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
+
+                    
                     //GraphicsDevice.Clear(Color.Purple);
                     break;
 
                 case GameState.Game:
+                    klaus.KlausDraw();
                     GraphicsDevice.Clear(Color.Yellow);
+                    
                     //klaus.KlausDraw();
                     break;
 
