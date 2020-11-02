@@ -48,6 +48,12 @@ namespace Telekat
 
 
         #region Class Constructor
+        public Items(int x, int y, int width, int height, Texture2D texture)
+        {
+            this.itemBox = new Rectangle(x, y, width, height);
+            this.item = texture;
+            isActive = false;
+        }
 
         #endregion
 
