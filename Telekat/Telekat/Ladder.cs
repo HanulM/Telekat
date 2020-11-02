@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Telekat
 {
-    class Ladder
+    class Ladder : Items
     {
     }
 }

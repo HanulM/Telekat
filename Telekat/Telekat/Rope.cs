@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Telekat
 {
-    class Rope
+    class Rope : Items
     {
     }
 }
