@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Telekat
 {
@@ -59,6 +60,22 @@ namespace Telekat
 
 
         #region Methods
+        /// <summary>
+        /// Sets the item as active if the player hovers their mouse over it
+        /// </summary>
+        /// <returns>Whether the items is active or not</returns>
+        public bool ItemActive()
+        {
+            MouseState currentState = Mouse.GetState();
+            Vector2 mousePosition = new Vector2(currentState.X, currentState.Y);
+
+            if (itemBox.Contains(mousePosition))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         #endregion
     }
