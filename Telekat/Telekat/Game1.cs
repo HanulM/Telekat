@@ -25,6 +25,7 @@ namespace Telekat
 
         KeyboardState keyboardState;
         KeyboardState prevKeyboardState;
+        MouseState mouse;
 
         Texture2D titleScreen;
         Texture2D klausSprite;
@@ -32,11 +33,14 @@ namespace Telekat
         Rectangle playerBox = new Rectangle(0, 100, 100, 100);
 
         Klaus klaus;
+        SpriteFont font;
         // make item objects
 
         double timer;
         int width;
         int height;
+        int mouseX;
+        int mouseY;
 
         public Game1()
         {
@@ -56,6 +60,7 @@ namespace Telekat
             // TODO: Add your initialization logic here
             gameState = GameState.Menu;
             keyboardState = Keyboard.GetState();
+            mouse = Mouse.GetState();
 
             timer = 10;
 
@@ -79,6 +84,7 @@ namespace Telekat
             spriteBatch = new SpriteBatch(GraphicsDevice);
             titleScreen = Content.Load<Texture2D>("title-screen");
             klausSprite = Content.Load<Texture2D>("klause_sprite");
+            font = Content.Load<SpriteFont>("Font");
 
 
             klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(100f, 100f));
@@ -105,7 +111,10 @@ namespace Telekat
                 Exit();
 
             // TODO: Add your update logic here
-            
+            mouse = Mouse.GetState();
+            mouseX = mouse.X;
+            mouseY = mouse.Y;
+
             //Change the game states 
             switch (gameState)
             {
@@ -115,9 +124,12 @@ namespace Telekat
                     //Once the user presses "Enter" 
                     //it will change the game state 
                     //and it will start the game.
-                    if (SingleKeyPress(Keys.Enter))
+                    if (mouseX < 644 && mouseX > 499 && mouseY < 432 && mouseY > 350) 
                     {
-                        gameState = GameState.Game; 
+                        if (mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            gameState = GameState.Game;
+                        }
                     }
 
                     //Resets the placeholder for loosing mechanic
@@ -212,8 +224,9 @@ namespace Telekat
             {
                 case GameState.Menu:
                     spriteBatch.Draw(titleScreen, new Rectangle(0, 0, width, height), Color.White);
+                    spriteBatch.DrawString(font, "mouse X: " + mouseX, new Vector2(0, 0), Color.White);
+                    spriteBatch.DrawString(font, "mouse Y: " + mouseY, new Vector2(0, 20), Color.White);
 
-                    
                     //GraphicsDevice.Clear(Color.Purple);
                     break;
 
