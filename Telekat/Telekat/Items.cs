@@ -64,18 +64,8 @@ namespace Telekat
         /// Sets the item as active if the player hovers their mouse over it
         /// </summary>
         /// <returns>Whether the items is active or not</returns>
-        public bool ItemActive()
-        {
-            MouseState currentState = Mouse.GetState();
-            Vector2 mousePosition = new Vector2(currentState.X, currentState.Y);
-
-            if (itemBox.Contains(mousePosition))
-            {
-                return true;
-            }
-
-            return false;
-        }
+        public abstract bool ItemActive();
+        
 
         #endregion
     }
