@@ -29,6 +29,8 @@ namespace Telekat
 
         Texture2D titleScreen;
         Texture2D klausSprite;
+        Texture2D level1;
+
 
         Rectangle playerBox;
 
@@ -70,6 +72,7 @@ namespace Telekat
 
 
 
+
             this.IsMouseVisible = true;
 
             base.Initialize();
@@ -85,10 +88,11 @@ namespace Telekat
             spriteBatch = new SpriteBatch(GraphicsDevice);
             titleScreen = Content.Load<Texture2D>("title-screen");
             klausSprite = Content.Load<Texture2D>("klause_sprite");
+            level1 = Content.Load<Texture2D>("level-1");
             font = Content.Load<SpriteFont>("Font");
 
 
-            klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(100f, 100f));
+            klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(250f, 100f));
             // TODO: use this.Content to load your game content here
         }
 
@@ -232,10 +236,13 @@ namespace Telekat
                     break;
 
                 case GameState.Game:
-                    
-                    GraphicsDevice.Clear(Color.Yellow);
+
+                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                    spriteBatch.Draw(level1, new Rectangle(200, 0, 400, height), Color.White);
+                    spriteBatch.DrawString(font, "mouse X: " + mouseX, new Vector2(0, 0), Color.White);
+                    spriteBatch.DrawString(font, "mouse Y: " + mouseY, new Vector2(0, 20), Color.White);
                     klaus.KlausDraw();
-                    //klaus.KlausDraw();
+
                     break;
 
                 case GameState.GameOver:

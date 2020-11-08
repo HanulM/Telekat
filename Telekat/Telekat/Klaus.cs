@@ -98,20 +98,24 @@ namespace Telekat
         //Lets Klaus move around the screen
         public void KlausMove(GameTime gameTime)
         {
+            //Calc for frames
             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
 
-            //Placeholder for klaus moving around the screen.
+            //gets the state of the keyboard
             kbState = Keyboard.GetState();
             
             switch (klausState)
             {
                 case KlausState.FaceLeft:
-
+                    //Checks if klaus still facing left and the key A
+                    //is being pressed, it will walk left
                     if(kbState.IsKeyDown(Keys.A))
                     {
                         klausState = KlausState.WalkLeft;
                     }   
 
+                    //if klaus looks to the other direction 
+                    //it will face that direction 
                     if(kbState.IsKeyDown(Keys.D))
                     {
                         klausState = KlausState.FaceRight;
@@ -121,11 +125,15 @@ namespace Telekat
 
                 case KlausState.FaceRight:
 
+                    //if klaus looks to the other direction
+                    //it will face that direction.
                     if(kbState.IsKeyDown(Keys.A))
                     {
                         klausState = KlausState.FaceLeft;
                     }
 
+                    //if klaus still facing right and the key D
+                    //is being pressed it will walk right 
                     if(kbState.IsKeyDown(Keys.D))
                     {
                         klausState = KlausState.WalkRight;
@@ -135,31 +143,50 @@ namespace Telekat
 
                 case KlausState.WalkLeft:
 
+                    //Stop walking and faces the other direction 
                     if(kbState.IsKeyUp(Keys.A))
                     {
                         
                         klausState = KlausState.FaceLeft;
                     }
 
+                    
                     if (kbState.IsKeyDown(Keys.A))
                     {
+                        //Changes frames for klaus walking animation
                         frames = framesElapsed % numFrames + 1;
+
+                        //Lets klaus move to the left 
                         klausLoc.X -= 2;
+                    }
+                    else
+                    {
+                        //resets the frames if klaus is not moving 
+                        frames = 0;
                     }
 
                     break;
 
                 case KlausState.WalkRight:
 
-                    if(kbState.IsKeyUp(Keys.D))
+                    //Stop walking and faces the other direction 
+                    if (kbState.IsKeyUp(Keys.D))
                     {
                         klausState = KlausState.FaceRight;
                     }
 
                     if (kbState.IsKeyDown(Keys.D))
                     {
+                        //Changes frames for klaus  walking animation
                         frames = framesElapsed % numFrames + 1;
+
+                        //Lets klaus move right 
                         klausLoc.X += 2;
+                    }
+                    else
+                    {
+                        //Resets the frames if klaus is not moving 
+                        frames = 0;
                     }
 
                     break;

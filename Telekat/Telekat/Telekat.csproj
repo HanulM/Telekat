@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\klause_sprite.png" />
+    <Content Include="Content\level-1.png" />
     <Content Include="Content\title-screen.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
