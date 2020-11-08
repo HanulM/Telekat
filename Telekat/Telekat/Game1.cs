@@ -62,7 +62,7 @@ namespace Telekat
             keyboardState = Keyboard.GetState();
             mouse = Mouse.GetState();
 
-            playerBox = new Rectangle(0, 2, 16, 18);
+            playerBox = new Rectangle(0, 1, 16, 16);
             timer = 10;
 
             width = GraphicsDevice.Viewport.Width;

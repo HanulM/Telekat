@@ -74,7 +74,7 @@ namespace Telekat
             this.klausBox = playerBox;
             this.spriteBatch = spriteBatch;
             this.klausLoc = klausLoc;
-            numFrames = 8;
+            numFrames = 7;
         }
 
         #endregion
@@ -137,11 +137,13 @@ namespace Telekat
 
                     if(kbState.IsKeyUp(Keys.A))
                     {
+                        
                         klausState = KlausState.FaceLeft;
                     }
 
                     if (kbState.IsKeyDown(Keys.A))
                     {
+                        frames = framesElapsed % numFrames + 1;
                         klausLoc.X -= 2;
                     }
 
@@ -156,6 +158,7 @@ namespace Telekat
 
                     if (kbState.IsKeyDown(Keys.D))
                     {
+                        frames = framesElapsed % numFrames + 1;
                         klausLoc.X += 2;
                     }
 
