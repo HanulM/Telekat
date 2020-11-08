@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,19 @@ namespace Telekat
 
         }
 
+        public override bool ItemActive()
+        {
+            //Placeholder, coordinates for the lever
+            //must be included
+            MouseState mouse = Mouse.GetState();
+
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                //Add the item to the inventory of the player
+                return true;
+            }
+
+            return false;
+        }
     }
 }

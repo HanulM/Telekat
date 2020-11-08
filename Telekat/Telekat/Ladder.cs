@@ -9,6 +9,8 @@ namespace Telekat
 {
     class Ladder : Items
     {
+        //Fields
+        private bool placeHolder;
 
         //Constructor 
         public Ladder(int x, int y, int width, int height, Texture2D texture) : base(x, y, width, height, texture)
@@ -16,5 +18,9 @@ namespace Telekat
 
         }
 
+        public override bool ItemActive()
+        {
+            return placeHolder;
+        }
     }
 }
