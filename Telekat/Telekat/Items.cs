@@ -14,6 +14,7 @@ namespace Telekat
         #region Fields
         // Sprites
         Texture2D item;
+        private SpriteBatch spriteBatch;
 
         // Item fields
 
@@ -51,6 +52,7 @@ namespace Telekat
         #region Class Constructor
         public Items(int x, int y, int width, int height, Texture2D texture)
         {
+            //this.spriteBatch = spriteBatch;
             this.itemBox = new Rectangle(x, y, width, height);
             this.item = texture;
             isActive = false;
@@ -65,7 +67,12 @@ namespace Telekat
         /// </summary>
         /// <returns>Whether the items is active or not</returns>
         public abstract bool ItemActive();
-        
+
+        //Draws the item to the game. 
+        public void Draw()
+        {
+            spriteBatch.Draw(item, ItemBox, Color.White);
+        }
 
         #endregion
     }

@@ -30,7 +30,7 @@ namespace Telekat
         Texture2D titleScreen;
         Texture2D klausSprite;
 
-        Rectangle playerBox = new Rectangle(0, 100, 100, 100);
+        Rectangle playerBox;
 
         Klaus klaus;
         SpriteFont font;
@@ -62,6 +62,7 @@ namespace Telekat
             keyboardState = Keyboard.GetState();
             mouse = Mouse.GetState();
 
+            playerBox = new Rectangle(0, 2, 16, 18);
             timer = 10;
 
             width = GraphicsDevice.Viewport.Width;
@@ -231,9 +232,9 @@ namespace Telekat
                     break;
 
                 case GameState.Game:
-                    klaus.KlausDraw();
-                    GraphicsDevice.Clear(Color.Yellow);
                     
+                    GraphicsDevice.Clear(Color.Yellow);
+                    klaus.KlausDraw();
                     //klaus.KlausDraw();
                     break;
 

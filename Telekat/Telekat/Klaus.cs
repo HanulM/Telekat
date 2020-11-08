@@ -110,7 +110,6 @@ namespace Telekat
                     if(kbState.IsKeyDown(Keys.A))
                     {
                         klausState = KlausState.WalkLeft;
-                        klausBox.X--;
                     }   
 
                     if(kbState.IsKeyDown(Keys.D))
@@ -130,7 +129,6 @@ namespace Telekat
                     if(kbState.IsKeyDown(Keys.D))
                     {
                         klausState = KlausState.WalkRight;
-                        klausBox.X++;
                     }
 
                     break;
@@ -142,6 +140,11 @@ namespace Telekat
                         klausState = KlausState.FaceLeft;
                     }
 
+                    if (kbState.IsKeyDown(Keys.A))
+                    {
+                        klausLoc.X -= 2;
+                    }
+
                     break;
 
                 case KlausState.WalkRight:
@@ -149,6 +152,11 @@ namespace Telekat
                     if(kbState.IsKeyUp(Keys.D))
                     {
                         klausState = KlausState.FaceRight;
+                    }
+
+                    if (kbState.IsKeyDown(Keys.D))
+                    {
+                        klausLoc.X += 2;
                     }
 
                     break;
@@ -159,17 +167,16 @@ namespace Telekat
 
         public void KlausDraw()
         {
-            if (klausState == KlausState.FaceLeft || klausState == KlausState.FaceRight)
+            if (klausState == KlausState.FaceLeft || klausState == KlausState.WalkLeft)
             {
-                spriteBatch.Draw(klausSprite, klausLoc,
-                    new Rectangle(klausBox.X + frames * klausBox.Width,
-                    klausBox.Y, klausBox.Width, klausBox.Height ), Color.White, 
+                spriteBatch.Draw(klausSprite, klausLoc, new Rectangle(klausBox.X + frames * klausBox.Width, klausBox.Y, klausBox.Width, klausBox.Height), Color.White,
                     0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
             }
             else
             {
-                spriteBatch.Draw(klausSprite, klausBox, Color.White);
+                spriteBatch.Draw(klausSprite, klausLoc, new Rectangle(klausBox.X + frames * klausBox.Width, klausBox.Y, klausBox.Width, klausBox.Height), Color.White);
             }
+            
         }
 
         #endregion
