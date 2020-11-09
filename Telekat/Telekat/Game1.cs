@@ -144,8 +144,15 @@ namespace Telekat
                 //User will be in the Game 
                 case GameState.Game:
 
+                    //PlaceHolder for klaus winning 
+                    if (klaus.KlausX == 400)
+                    {
+                        gameState = GameState.GameWin;
+                    }
+
                     klaus.KlausMove(gameTime);
 
+                   
                     if (mouseX < 180 && mouseX > 30 && mouseY < 429 && mouseY > 349)
                     {
                         if (mouse.LeftButton == ButtonState.Pressed)
@@ -154,10 +161,7 @@ namespace Telekat
                         }
                     }
 
-                    if (keyboardState.IsKeyDown(Keys.W))
-                    {
-                        gameState = GameState.GameWin;
-                    }
+                    
 
                     if (keyboardState.IsKeyDown(Keys.L))
                     {
@@ -174,6 +178,7 @@ namespace Telekat
                     if (SingleKeyPress(Keys.Enter))
                     {
                         gameState = GameState.Menu;
+                        this.RestartGame();
                     }
 
                     break;
@@ -192,6 +197,7 @@ namespace Telekat
                     if (keyboardState.IsKeyDown(Keys.R))
                     {
                         gameState = GameState.Menu;
+                        this.RestartGame();
                     }
 
                     break;
@@ -294,6 +300,7 @@ namespace Telekat
 
         public void RestartGame()
         {
+            //PlaceHolder to restar the game. 
             klaus.KlausX = 250;
             klaus.KlausY = 100;
         }

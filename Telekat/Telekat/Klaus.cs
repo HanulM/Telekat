@@ -53,14 +53,14 @@ namespace Telekat
         // Read and sets the x value of the character's hitbox.
         public int KlausX
         {
-            get{ return this.klausBox.X; }
-            set{ this.klausBox.X = value; }
+            get{ return (int)klausLoc.X; }
+            set{ klausLoc.X = value; }
         }
         // Read and sets the y value of the character's hitbox.
         public int KlausY
         {
-            get{ return this.klausBox.Y; }
-            set{ this.klausBox.Y = value; }
+            get{ return (int)klausLoc.Y; }
+            set{ klausLoc.Y = value; }
         }
 
         #endregion
