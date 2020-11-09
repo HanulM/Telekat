@@ -13,7 +13,8 @@ namespace Telekat
         private bool placeHolder;
 
         //Constructor 
-        public Ladder(int x, int y, int width, int height, Texture2D texture) : base(x, y, width, height, texture)
+        public Ladder(int x, int y, int width, int height, Texture2D texture) 
+            : base(x, y, width, height, texture)
         {
 
         }
