@@ -24,7 +24,6 @@ namespace Telekat
 
         // Other Fields
         protected string itemName;
-
         #endregion
 
 
