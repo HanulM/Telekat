@@ -51,7 +51,6 @@ namespace Telekat
         {
             get { return this.itemName; }
         }
-
         #endregion
 
 
@@ -64,7 +63,6 @@ namespace Telekat
             isActive = false;
             this.itemName = name;
         }
-
         #endregion
 
 

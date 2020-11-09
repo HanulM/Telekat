@@ -79,7 +79,13 @@ namespace Telekat
             return false;
         }
 
-
+        public void Climb()
+        {
+            if (this.isActive)
+            {
+                // Klaus climbs up ladder
+            }
+        }
         #endregion
     }
 }
