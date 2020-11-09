@@ -92,7 +92,7 @@ namespace Telekat
 
             //Checks if the player decided to open the chest. 
             //Only opens if the chest is active.
-            if(this.ItemActive() == true && mouse.LeftButton == ButtonState.Pressed)
+            if(this.ItemActive() == true && mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
             {
                 //Add item to the inventory of Klaus (dictionary) 
                 inventory.Add(chestItem.ItemName, true);

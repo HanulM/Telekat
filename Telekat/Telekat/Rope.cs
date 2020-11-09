@@ -24,6 +24,7 @@ namespace Telekat
 
         // Other Fields
         new string itemName;
+        private Dictionary<string, bool> inventory = new Dictionary<string, bool>();
         #endregion
 
 
@@ -72,14 +73,25 @@ namespace Telekat
             //Placeholder, coordinates for the lever
             //must be included
             MouseState mouse = Mouse.GetState();
+            int mouseX = mouse.X;
+            int mouseY = mouse.Y;
 
-            if (mouse.LeftButton == ButtonState.Pressed)
+            if (mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouseX, mouseY))
             {
                 //Add the item to the inventory of the player
                 return true;
             }
 
             return false;
+        }
+
+        // Klaus uses rope to pull on objects
+        public void UseRope()
+        {
+            if (this.isActive)
+            {
+
+            }
         }
     }
 }

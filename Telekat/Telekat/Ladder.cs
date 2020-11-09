@@ -81,7 +81,9 @@ namespace Telekat
 
         public void Climb()
         {
-            if (this.isActive)
+            MouseState mouse = Mouse.GetState();
+
+            if (this.isActive && mouse.LeftButton == ButtonState.Pressed)
             {
                 // Klaus climbs up ladder
             }
