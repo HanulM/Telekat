@@ -16,13 +16,14 @@ namespace Telekat
         Texture2D item;
         private SpriteBatch spriteBatch;
 
-        // Item fields
-
         // Fields for Physics
         protected Rectangle itemBox;
 
         // Active or Nonactive
         protected bool isActive;
+
+        // Other Fields
+        protected string itemName;
 
         #endregion
 
@@ -45,17 +46,23 @@ namespace Telekat
             get{ return this.itemBox.Y; }
             set{ this.itemBox.Y = value; }
         }
+        // Read-only property of the item's name
+        public string ItemName
+        {
+            get { return this.itemName; }
+        }
 
         #endregion
 
 
         #region Class Constructor
-        public Items(int x, int y, int width, int height, Texture2D texture)
+        public Items(int x, int y, int width, int height, Texture2D texture, string name)
         {
             //this.spriteBatch = spriteBatch;
             this.itemBox = new Rectangle(x, y, width, height);
             this.item = texture;
             isActive = false;
+            this.itemName = name;
         }
 
         #endregion

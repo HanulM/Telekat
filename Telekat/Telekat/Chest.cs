@@ -5,21 +5,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace Telekat
 {
     class Chest : Items
     {
-        //Fields
-        private Items chestItem;
-        private bool keyInInventory; 
+        #region Fields
+        // Sprites
+        Texture2D item;
+        private SpriteBatch spriteBatch;
 
-        //Properties 
+        // Fields for Physics
+        new Rectangle itemBox;
+
+        // Active or Nonactive
+        new bool isActive;
+
+        // Other Fields
+        new string itemName;
+        private Items chestItem;
+        new bool keyInInventory;
+        private Dictionary<string, bool> inventory = new Dictionary<string, bool>();
+
+        #endregion
+
+
+        #region Properties
+        // Read only property of the item's hitbox.
+        new Rectangle ItemBox
+        {
+            get { return this.itemBox; }
+        }
+        // Read and sets the x value of the item's hitbox.
+        new int ItemX
+        {
+            get { return this.itemBox.X; }
+            set { this.itemBox.X = value; }
+        }
+        // Read and sets the y value of the item's hitbox.
+        new int ItemY
+        {
+            get { return this.itemBox.Y; }
+            set { this.itemBox.Y = value; }
+        }
+        // Read-only property of the item's name
+        new string ItemName
+        {
+            get { return this.itemName; }
+        }
+        // Read-only property of the chest item
         public Items ChestItem { get { return chestItem; } }
 
+        #endregion
+
+
         //Constructor 
-        public Chest(int x, int y, int width, int height, Texture2D texture) : base(x, y, width, height, texture)
+        public Chest(int x, int y, int width, int height, Texture2D texture, string name) 
+            : base(x, y, width, height, texture, name)
         {
+            this.itemBox = new Rectangle(x, y, width, height);
+            this.item = texture;
+            this.itemName = name;
+            isActive = false;
         }
 
         //Methods
@@ -30,6 +78,7 @@ namespace Telekat
             //it cannot be activated 
             if(keyInInventory == true)
             {
+                this.isActive = true;
                 return true;
             }
 
@@ -46,6 +95,7 @@ namespace Telekat
             if(this.ItemActive() == true && mouse.LeftButton == ButtonState.Pressed)
             {
                 //Add item to the inventory of Klaus (dictionary) 
+                inventory.Add(chestItem.ItemName, true);
             }
         }
     }

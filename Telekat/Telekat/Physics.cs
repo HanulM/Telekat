@@ -8,9 +8,9 @@ namespace Telekat
 {
     class Physics
     {
-        // Attributes
-        //Klaus klaus = new Klaus();
-        //Items myItems = new Items();
+        #region Fields
+
+        #endregion
 
         // Properties
 
