@@ -29,7 +29,9 @@ namespace Telekat
 
         Texture2D titleScreen;
         Texture2D klausSprite;
+        Texture2D pauseMenu;
         Texture2D level1;
+        Texture2D pauseButton;
 
 
         Rectangle playerBox;
@@ -38,7 +40,6 @@ namespace Telekat
         SpriteFont font;
         // make item objects
 
-        double timer;
         int width;
         int height;
         int mouseX;
@@ -65,7 +66,6 @@ namespace Telekat
             mouse = Mouse.GetState();
 
             playerBox = new Rectangle(0, 1, 16, 16);
-            timer = 10;
 
             width = GraphicsDevice.Viewport.Width;
             height = GraphicsDevice.Viewport.Height;
@@ -90,6 +90,8 @@ namespace Telekat
             klausSprite = Content.Load<Texture2D>("klause_sprite");
             level1 = Content.Load<Texture2D>("level-1");
             font = Content.Load<SpriteFont>("Font");
+            pauseButton = Content.Load<Texture2D>("PauseButton");
+            pauseMenu = Content.Load<Texture2D>("pause-menu");
 
 
             klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(250f, 100f));
@@ -136,11 +138,7 @@ namespace Telekat
                             gameState = GameState.Game;
                         }
                     }
-
-                    //Resets the placeholder for loosing mechanic
-                    timer = 10;
-
-
+                                       
                     break;
 
                 //User will be in the Game 
@@ -148,9 +146,12 @@ namespace Telekat
 
                     klaus.KlausMove(gameTime);
 
-                    if (SingleKeyPress(Keys.P))
+                    if (mouseX < 180 && mouseX > 30 && mouseY < 429 && mouseY > 349)
                     {
-                        gameState = GameState.PauseMenu;
+                        if (mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            gameState = GameState.PauseMenu;
+                        }
                     }
 
                     if (keyboardState.IsKeyDown(Keys.W))
@@ -204,6 +205,7 @@ namespace Telekat
                     if (SingleKeyPress(Keys.Enter))
                     {
                         gameState = GameState.Menu;
+                        this.RestartGame();
                     }
 
                     break;
@@ -237,8 +239,9 @@ namespace Telekat
 
                 case GameState.Game:
 
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
-                    spriteBatch.Draw(level1, new Rectangle(200, 0, 400, height), Color.White);
+                    GraphicsDevice.Clear(Color.DarkSlateBlue);
+                    spriteBatch.Draw(level1, new Rectangle(225, 0, 350, height), Color.White);
+                    spriteBatch.Draw(pauseButton, new Rectangle(30, 350, 150, 75), Color.White);
                     spriteBatch.DrawString(font, "mouse X: " + mouseX, new Vector2(0, 0), Color.White);
                     spriteBatch.DrawString(font, "mouse Y: " + mouseY, new Vector2(0, 20), Color.White);
                     klaus.KlausDraw();
@@ -251,12 +254,13 @@ namespace Telekat
                     break;
 
                 case GameState.PauseMenu:
-                    GraphicsDevice.Clear(Color.Blue);
+                    spriteBatch.Draw(pauseMenu, new Rectangle(0, 0, width, height), Color.White);
 
                     break;
 
                 case GameState.GameWin:
                     GraphicsDevice.Clear(Color.Green);
+
 
                     break;
 
@@ -286,6 +290,12 @@ namespace Telekat
             {
                 return false;
             }
+        }
+
+        public void RestartGame()
+        {
+            klaus.KlausX = 250;
+            klaus.KlausY = 100;
         }
     }
 }
