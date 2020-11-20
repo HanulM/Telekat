@@ -37,7 +37,7 @@ namespace Telekat
         // Gravity - Unsure on how to implement
         /*public void Gravity(Klaus player)
         {
-
+            needs player velocity and 2D physics
         }*/
     }
 }
