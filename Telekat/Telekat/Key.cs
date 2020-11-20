@@ -66,29 +66,29 @@ namespace Telekat
 
 
         #region Methods
-        public override bool ItemActive()
+        // A method that makes the item interactable
+        public override bool ItemActive(Klaus myPlayer)
         {
-            //Placeholder, coordinates for the lever
-            //must be included
             MouseState mouse = Mouse.GetState();
 
             if(mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
             {
                 //Add the item to the inventory of the player
+                myPlayer.Inventory.Add("key", Key);
                 return true;
             }
 
             return false;
         }
 
+        // A method that simulates the key object opening a chest object
         public void UnlockChest(Chest myChest)
         {
             MouseState currentState = Mouse.GetState();
 
             if (this.isActive == true)
             {
-                // call the Chest class' OpenChest method - needs a chest object but in order to do that we need to load the chest asset here instead
-                // of in the Game1 class
+                myChest.OpenChest();
             }
         }
 

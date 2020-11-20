@@ -66,18 +66,32 @@ namespace Telekat
         #endregion
 
 
+        #region Methods
+
+        // A method that makes the item interactable
         public override bool ItemActive()
         {
             //Placeholder, coordinates for the lever
             //must be included
             MouseState mouse = Mouse.GetState();
 
-            if(mouse.LeftButton == ButtonState.Pressed)
+            if(mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
             {
                 return true;
             }
 
             return false;
         }
+
+        /// <summary>
+        /// Calls to the platform class to make a platform appear
+        /// </summary>
+        /// <param name="myPlatform">The platform to activate</param>
+        public void ActivatePlatform(Platform myPlatform)
+        {
+            myPlatform.LeverActivated();
+        }
+
+        #endregion
     }
 }

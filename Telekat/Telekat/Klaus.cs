@@ -32,6 +32,7 @@ namespace Telekat
 
         //Character Fields
         private int lives = 9;
+        private Dictionary<string, Items> inventory;
 
         // Inputs
         private KeyboardState kbState;
@@ -62,6 +63,12 @@ namespace Telekat
             get{ return (int)klausLoc.Y; }
             set{ klausLoc.Y = value; }
         }
+        // Read and sets the character's inventory
+        public Dictionary<string, Items> Inventory
+        {
+            get { return this.inventory; }
+            set { this.inventory = value; }
+        }
 
         #endregion
 
@@ -75,6 +82,8 @@ namespace Telekat
             this.spriteBatch = spriteBatch;
             this.klausLoc = klausLoc;
             numFrames = 7;
+
+            this.inventory = new Dictionary<string, Items>();
         }
 
         #endregion
