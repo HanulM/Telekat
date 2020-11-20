@@ -86,7 +86,7 @@ namespace Telekat
         }
 
         // Klaus uses rope to pull on objects
-        public void UseRope()
+        public void UseRope(Items myItem)
         {
             if (this.isActive)
             {

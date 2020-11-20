@@ -67,6 +67,11 @@ namespace Telekat
         #endregion
 
 
+        #region method
+        /// <summary>
+        /// Checks if the item is interactable
+        /// </summary>
+        /// <returns>Whether the item can be interacted with or not</returns>
         public override bool ItemActive()
         {
             //Placeholder, coordinates for the lever
@@ -75,11 +80,30 @@ namespace Telekat
 
             if (mouse.LeftButton == ButtonState.Pressed)
             {
-                //Add the item to the inventory of the player
                 return true;
             }
 
             return false;
         }
+
+        /// <summary>
+        /// Adds rock to Klaus' inventory
+        /// </summary>
+        /// <param name="myPlayer">The player whose inventory we add to</param>
+        public void AddItem(Klaus myPlayer)
+        {
+            if (ItemActive())
+            {
+                myPlayer.Inventory.Add(this.itemName, this);
+            }
+        }
+
+
+        public void PlaceRock()
+        {
+            // checks if the hotbar box with the rock is selected
+            // if so, the rock can be moved and placed to where the cursor goes
+        }
+        #endregion
     }
 }

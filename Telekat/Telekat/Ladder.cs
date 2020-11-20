@@ -79,13 +79,14 @@ namespace Telekat
             return false;
         }
 
-        public void Climb()
+        public void Climb(Klaus myPlayer)
         {
             MouseState mouse = Mouse.GetState();
 
             if (this.isActive && mouse.LeftButton == ButtonState.Pressed)
             {
                 // Klaus climbs up ladder
+                // maybe a myPlayer.Climb() kind of thing
             }
         }
         #endregion
