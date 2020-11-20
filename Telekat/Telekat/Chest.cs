@@ -26,7 +26,6 @@ namespace Telekat
         new string itemName;
         private Items chestItem;
         new bool keyInInventory;
-        private Dictionary<string, bool> inventory = new Dictionary<string, bool>();
 
         #endregion
 
@@ -86,7 +85,7 @@ namespace Telekat
         }
 
         //Opens the chest and gives the player and item
-        public void OpenChest()
+        public void OpenChest(Klaus myPlayer)
         {
             MouseState mouse = Mouse.GetState();
 
@@ -95,7 +94,7 @@ namespace Telekat
             if(this.ItemActive() == true && mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
             {
                 //Add item to the inventory of Klaus (dictionary) 
-                inventory.Add(chestItem.ItemName, true);
+                myPlayer.Inventory.Add(itemName, chestItem);
             }
         }
     }
