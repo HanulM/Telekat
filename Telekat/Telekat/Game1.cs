@@ -33,6 +33,7 @@ namespace Telekat
         Texture2D pauseMenu;
         Texture2D level1;
         Texture2D pauseButton;
+        Texture2D pauseMenuButtons; 
 
 
         Rectangle playerBox;
@@ -93,7 +94,7 @@ namespace Telekat
             font = Content.Load<SpriteFont>("Font");
             pauseButton = Content.Load<Texture2D>("PauseButton");
             pauseMenu = Content.Load<Texture2D>("pause-menu");
-
+            pauseMenuButtons = Content.Load<Texture2D>("PauseMenu");
 
             klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(250f, 435f));
             // TODO: use this.Content to load your game content here
@@ -187,9 +188,39 @@ namespace Telekat
                 //User is in the Pause menu
                 case GameState.PauseMenu:
 
-                    //If the user presses P again,
-                    //it will take them back to the 
-                    //Game.
+                    //If the mouse is on the x range of the buttons, 
+                    //it will check the range y of the button 
+                    if (mouseX < 648 && mouseX > 152)
+                    {
+                        //Resume Game button, it will go back to the game 
+                        if (mouseY < 241 && mouseY > 166)
+                        {
+                            if (mouse.LeftButton == ButtonState.Pressed)
+                            {
+                                gameState = GameState.Game;
+                            }
+                        }
+
+                        //Restart game button, it will go to the main menu
+                        if (mouseY < 340 && mouseY > 263)
+                        {
+                            if (mouse.LeftButton == ButtonState.Pressed)
+                            {
+                                RestartGame();
+                                gameState = GameState.Menu;
+                            }
+                        }
+
+                        //Items Loader button, opens the items loader. 
+                        if (mouseY < 440 && mouseY > 366)
+                        {
+                            if (mouse.LeftButton == ButtonState.Pressed)
+                            {
+                                //external tool needs fixing 
+                            }
+                        }
+                    }
+
                     if (SingleKeyPress(Keys.P))
                     {
                         gameState = GameState.Game;
@@ -262,6 +293,9 @@ namespace Telekat
 
                 case GameState.PauseMenu:
                     spriteBatch.Draw(pauseMenu, new Rectangle(0, 0, width, height), Color.White);
+                    spriteBatch.Draw(pauseMenuButtons, new Rectangle(100, 55, 600, 500), Color.White);
+                    spriteBatch.DrawString(font, "mouse X: " + mouseX, new Vector2(0, 0), Color.White);
+                    spriteBatch.DrawString(font, "mouse Y: " + mouseY, new Vector2(0, 20), Color.White);
 
                     break;
 
