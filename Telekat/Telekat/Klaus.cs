@@ -165,6 +165,11 @@ namespace Telekat
                         //Changes frames for klaus walking animation
                         frames = framesElapsed % numFrames + 1;
 
+                        if (klausLoc.X < 225)
+                        {
+                            klausLoc.X += 2;
+                        }
+
                         //Lets klaus move to the left 
                         klausLoc.X -= 2;
                     }
@@ -188,7 +193,11 @@ namespace Telekat
                     {
                         //Changes frames for klaus  walking animation
                         frames = framesElapsed % numFrames + 1;
-
+                        
+                        if (KlausX > 560)
+                        {
+                            KlausX -= 2;
+                        }
                         //Lets klaus move right 
                         klausLoc.X += 2;
                     }

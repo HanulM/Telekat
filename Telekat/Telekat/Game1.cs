@@ -154,7 +154,7 @@ namespace Telekat
 
                     klaus.KlausMove(gameTime);
 
-                   
+                                       
                     if (mouseX < 180 && mouseX > 30 && mouseY < 429 && mouseY > 349)
                     {
                         if (mouse.LeftButton == ButtonState.Pressed)
