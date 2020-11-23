@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+/*using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ExternalTool
 {
-    public partial class Form1 : Form
+    public partial class Form1 
     {
         public Form1()
         {
@@ -25,7 +24,6 @@ namespace ExternalTool
             textBoxLever.Text = "0";
             textBoxButton.Text = "0";
             textBoxCrate.Text = "0";
-            MessageBox.Show("Changes have been set to Default");
         }
 
         private void labelTreasure_Click(object sender, EventArgs e)
@@ -93,4 +91,4 @@ namespace ExternalTool
 
         }
     }
-}
+}*/

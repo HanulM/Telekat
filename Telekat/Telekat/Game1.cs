@@ -95,7 +95,7 @@ namespace Telekat
             pauseMenu = Content.Load<Texture2D>("pause-menu");
 
 
-            klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(250f, 100f));
+            klaus = new Klaus(klausSprite, playerBox, spriteBatch, new Vector2(250f, 435f));
             // TODO: use this.Content to load your game content here
         }
 
@@ -146,7 +146,7 @@ namespace Telekat
                 case GameState.Game:
 
                     //PlaceHolder for klaus winning 
-                    if (klaus.KlausX == 400)
+                    if (klaus.KlausX == 200 && klaus.KlausY == 100)
                     {
                         gameState = GameState.GameWin;
                     }
@@ -303,7 +303,8 @@ namespace Telekat
         {
             //PlaceHolder to restar the game. 
             klaus.KlausX = 250;
-            klaus.KlausY = 100;
+            klaus.KlausY = 435;
+            klaus.Inventory.Clear();
         }
     }
 }

@@ -64,34 +64,39 @@ namespace Telekat
             isActive = false;
         }
 
-
-        #region Methods
-        // A method that makes the item interactable
-        public override bool ItemActive(Klaus myPlayer)
+        public override bool ItemActive()
         {
-            MouseState mouse = Mouse.GetState();
-
-            if(mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
-            {
-                //Add the item to the inventory of the player
-                myPlayer.Inventory.Add("key", Key);
-                return true;
-            }
-
             return false;
         }
 
-        // A method that simulates the key object opening a chest object
-        public void UnlockChest(Chest myChest)
-        {
-            MouseState currentState = Mouse.GetState();
 
-            if (this.isActive == true)
-            {
-                myChest.OpenChest();
-            }
-        }
+        #region Methods
+        // A method that makes the item interactable
+        /* public override bool ItemActive(Klaus myPlayer)
+         {
+             MouseState mouse = Mouse.GetState();
 
+             if(mouse.LeftButton == ButtonState.Pressed && itemBox.Contains(mouse.X, mouse.Y))
+             {
+                 //Add the item to the inventory of the player
+                 myPlayer.Inventory.Add("key", Key);
+                 return true;
+             }
+
+             return false;
+         }
+
+         // A method that simulates the key object opening a chest object
+         public void UnlockChest(Chest myChest)
+         {
+             MouseState currentState = Mouse.GetState();
+
+             if (this.isActive == true)
+             {
+                 myChest.OpenChest();
+             }
+         }
+         */
         #endregion
     }
 }
