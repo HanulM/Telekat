@@ -16,7 +16,7 @@ namespace Telekat
         WalkLeft,
         WalkRight
     }
-    class Klaus 
+    class Klaus : IPhysics
     {
 
         #region Fields
@@ -25,7 +25,10 @@ namespace Telekat
         private SpriteBatch spriteBatch;
         private Rectangle klausBox;
         private Vector2 klausLoc;
+        private Vector2 velocity;
+        private Vector2 gravity;
         private int framesElapsed;
+        private double jumpTimer;
         private double timePerFrame = 100;
         private int numFrames;
         private int frames;
@@ -70,6 +73,30 @@ namespace Telekat
             set { this.inventory = value; }
         }
 
+        public Vector2 Location
+        {
+            get { return klausLoc; }
+            set { klausLoc = value; }
+        }
+
+        public Vector2 Velocity
+        {
+            get { return velocity; }
+            set { velocity = value; }
+        }
+
+        public Vector2 Gravity
+        {
+            get { return gravity; }
+            set { gravity = value; }
+        }
+
+        public double JumpTimer
+        {
+            get { return jumpTimer; }
+            set { jumpTimer = value; }
+        }
+
         #endregion
 
 
@@ -90,6 +117,21 @@ namespace Telekat
 
 
         #region Methods
+
+        // Physics and Collision Methods
+        public void ResetTimer()
+        {
+            jumpTimer = 1;
+        }
+
+        public bool CollidingTop()
+        {
+            bool collidingTop = false;
+
+            //for(int x = 0; x < ) implement a level class
+            //instead of platform class for collision
+        }
+
 
         // Triggers Klaus' telekinesis
         public bool Tele()
