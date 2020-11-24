@@ -87,10 +87,10 @@ namespace Telekat
         /// Calls to the platform class to make a platform appear
         /// </summary>
         /// <param name="myPlatform">The platform to activate</param>
-        public void ActivatePlatform(Platform myPlatform)
+        /*public void ActivatePlatform(Platform myPlatform)
         {
             myPlatform.LeverActivated();
-        }
+        }*/
 
         #endregion
     }

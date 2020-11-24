@@ -20,15 +20,23 @@ namespace Telekat
     {
 
         #region Fields
+        // Game
+        Game1 thisGame = new Game1();
+
         // Sprites
         private Texture2D klausSprite;
         private SpriteBatch spriteBatch;
         private Rectangle klausBox;
+
+        // Physics
         private Vector2 klausLoc;
         private Vector2 velocity;
         private Vector2 gravity;
-        private int framesElapsed;
         private double jumpTimer;
+        private Level level = new Level();
+
+        // Animation
+        private int framesElapsed;
         private double timePerFrame = 100;
         private int numFrames;
         private int frames;
@@ -91,7 +99,7 @@ namespace Telekat
             set { gravity = value; }
         }
 
-        public double JumpTimer
+        public double Timer
         {
             get { return jumpTimer; }
             set { jumpTimer = value; }
@@ -128,8 +136,95 @@ namespace Telekat
         {
             bool collidingTop = false;
 
-            //for(int x = 0; x < ) implement a level class
-            //instead of platform class for collision
+            for(int x = 0; x < level.Platforms.GetLength(0); x++)
+            {
+                for(int y = 0; y < level.Platforms.GetLength(1); y++)
+                {
+                    if(KlausBox.Intersects(level.Platforms[x, y].Location) && 
+                        KlausBox.Top >= level.Platforms[x, y].Location.Top)
+                    {
+                        collidingTop = true;
+                    }
+                }
+            }
+
+            return collidingTop;
+        }
+
+        public bool CollidingRight()
+        {
+            bool collidingRight = false;
+
+            for(int x = 0; x < level.Platforms.GetLength(0); x++)
+            {
+                for(int y = 0; y < level.Platforms.GetLength(1); y++)
+                {
+                    if(x >= thisGame.GraphicsDevice.Viewport.Width)
+                    {
+                        break;
+                    }
+
+                    if(level.Platforms[x, y].Location.Intersects(KlausBox) &&
+                        KlausBox.Right >= level.Platforms[x, y].Location.Right)
+                    {
+                        collidingRight = true;
+                    }
+                }
+
+                if(collidingRight == false && klausBox.Right >= thisGame.GraphicsDevice.Viewport.Width)
+                {
+                    collidingRight = true;
+                }
+            }
+
+            return collidingRight;
+        }
+
+        public bool CollidingLeft()
+        {
+            bool collidingLeft = false;
+
+            for(int x = 0; x < level.Platforms.GetLength(0); x++)
+            {
+                for(int y = 0; y < level.Platforms.GetLength(1); y++)
+                {
+                    if(x <= 0)
+                    {
+                        break;
+                    }
+                    if(level.Platforms[x,y].Location.Intersects(KlausBox) &&
+                        KlausBox.Left <= level.Platforms[x, y].Location.Left)
+                    {
+                        collidingLeft = true;
+                    }
+                }
+            }
+
+            if(collidingLeft == false && klausBox.Left <= 0)
+            {
+                collidingLeft = true;
+            }
+
+            return collidingLeft;
+        }
+
+        public bool CollidingBottom()
+        {
+            bool collidingBottom = false;
+
+            for(int x = 0; x < level.Platforms.GetLength(0); x++)
+            {
+                for(int y = 0; y < level.Platforms.GetLength(1); y++)
+                {
+                    if(KlausBox.Intersects(level.Platforms[x, y].Location) &&
+                        KlausBox.Bottom >= level.Platforms[x, y].Location.Bottom)
+                    {
+                        collidingBottom = true;
+                    }
+                }
+            }
+
+            return collidingBottom;
         }
 
 
