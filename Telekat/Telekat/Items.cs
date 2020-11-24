@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Telekat
 {
-    abstract class Items : Physics
+    abstract class Items
     {
         #region Fields
         // Sprites

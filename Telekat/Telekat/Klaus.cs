@@ -16,7 +16,7 @@ namespace Telekat
         WalkLeft,
         WalkRight
     }
-    class Klaus : Physics
+    class Klaus 
     {
 
         #region Fields
